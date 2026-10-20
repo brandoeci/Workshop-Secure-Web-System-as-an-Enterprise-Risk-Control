@@ -1,0 +1,40 @@
+# /etc/systemd/system/enterprise-risk-api.service
+#
+# Least privilege: a system account with no home and no shell, no capability to
+# write anywhere but its own directory, and the port bound to loopback only.
+[Unit]
+Description=Enterprise Risk API
+After=network.target
+
+[Service]
+User=riskapi
+Group=riskapi
+WorkingDirectory=/opt/enterprise-risk-api
+
+Environment="SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=https://YOUR_TENANT.us.auth0.com/"
+Environment="SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_AUDIENCES=https://enterprise-risk-api"
+Environment="APP_CORS_ALLOWED_ORIGINS=https://YOUR-SUBDOMAIN.duckdns.org"
+Environment="SERVER_ADDRESS=127.0.0.1"
+Environment="SERVER_PORT=8080"
+
+ExecStart=/usr/bin/java -jar /opt/enterprise-risk-api/app.jar
+Restart=always
+RestartSec=5
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/enterprise-risk-api
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+# Audit trail lands in the journal: journalctl -u enterprise-risk-api
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=enterprise-risk-api
+
+[Install]
+WantedBy=multi-user.target

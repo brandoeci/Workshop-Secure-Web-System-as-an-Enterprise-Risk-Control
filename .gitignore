@@ -1,0 +1,35 @@
+# --- Secrets and local configuration: never commit these -------------------
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+*.jks
+duckdns.env
+secrets/
+
+# --- Node / frontend -------------------------------------------------------
+node_modules/
+dist/
+dist-ssr/
+.vite/
+npm-debug.log*
+yarn-error.log*
+*.local
+
+# --- Java / backend --------------------------------------------------------
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+*.class
+*.log
+hs_err_pid*
+replay_pid*
+
+# --- Editors and OS --------------------------------------------------------
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
