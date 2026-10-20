@@ -30,7 +30,7 @@ path and it is encrypted.
 | [backend/](backend/) | Spring Boot 3.3 OAuth 2.0 resource server, Java 21, one protected endpoint |
 | [frontend/](frontend/) | Vite + React 18 SPA using `@auth0/auth0-react` |
 | [deploy/](deploy/) | systemd unit, Apache virtual host, Duck DNS updater, bootstrap / deploy / verify scripts |
-| [docs/](docs/) | Auth0 setup walkthrough, risk-control table, verification checklist, screenshots |
+| [docs/](docs/) | Auth0 walkthrough, deployment guide, risk-control table, verification checklist, local test evidence |
 
 ## Authentication vs authorization in this system
 
@@ -116,6 +116,11 @@ Then check the result:
 ```bash
 ./deploy/verify.sh YOUR-SUBDOMAIN.duckdns.org
 ```
+
+What already passes locally, with captured output, is in
+[docs/local-verification.md](docs/local-verification.md). The full Part 7 list
+and what each check should print is in
+[docs/verification-checklist.md](docs/verification-checklist.md).
 
 ## Filling in your own values
 
