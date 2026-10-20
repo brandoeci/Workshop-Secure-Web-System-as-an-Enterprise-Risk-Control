@@ -19,6 +19,7 @@ show, not an assertion.
 | Loopback bind plus firewall | The same risk defended twice, so one misconfiguration is not enough | `SERVER_ADDRESS=127.0.0.1`; `ufw status verbose` | [service unit](../deploy/enterprise-risk-api.service), [server-bootstrap.sh](../deploy/server-bootstrap.sh) |
 | Least-privilege service account | A compromised process writing anywhere on the host | `riskapi` has no shell and no home; `ProtectSystem=strict`, `NoNewPrivileges` | [service unit](../deploy/enterprise-risk-api.service) |
 | Minimal actuator surface | Configuration and heap disclosure | Only `/actuator/health` is exposed, with `show-details=never` | [application.properties](../backend/src/main/resources/application.properties) |
+| Reverse proxy and TLS vhost rehearsed end to end | Config that only works on the slides | `apachectl configtest` plus the captured run in [server-rehearsal.md](server-rehearsal.md) | [enterprise-risk.conf](../deploy/enterprise-risk.conf) |
 | Central service logs | Delayed incident investigation | `journalctl -u enterprise-risk-api` shows caller subject and timestamp per request | [RiskController.java](../backend/src/main/java/com/eci/risk/RiskController.java) |
 | Secrets kept out of git | Credential leak through the repository | `.gitignore` covers `.env.local`, keys and tokens; the SPA ships only a client ID | [.gitignore](../.gitignore) |
 | OS patching | Known, already-fixed vulnerabilities | `unattended-upgrades` enabled by the bootstrap script | [server-bootstrap.sh](../deploy/server-bootstrap.sh) |

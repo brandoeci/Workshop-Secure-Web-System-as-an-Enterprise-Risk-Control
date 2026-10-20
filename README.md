@@ -30,7 +30,7 @@ path and it is encrypted.
 | [backend/](backend/) | Spring Boot 3.3 OAuth 2.0 resource server, Java 21, one protected endpoint |
 | [frontend/](frontend/) | Vite + React 18 SPA using `@auth0/auth0-react` |
 | [deploy/](deploy/) | systemd unit, Apache virtual host, Duck DNS updater, bootstrap / deploy / verify scripts |
-| [docs/](docs/) | Auth0 walkthrough, deployment guide, risk-control table, verification checklist, local test evidence |
+| [docs/](docs/) | Auth0 walkthrough, deployment guide, risk-control table, verification checklist, captured test evidence |
 
 ## Authentication vs authorization in this system
 
@@ -118,7 +118,9 @@ Then check the result:
 ```
 
 What already passes locally, with captured output, is in
-[docs/local-verification.md](docs/local-verification.md). The full Part 7 list
+[docs/local-verification.md](docs/local-verification.md), and the whole Part 5
+and Part 6 deployment was rehearsed on a real Linux host with these same files:
+[docs/server-rehearsal.md](docs/server-rehearsal.md). The full Part 7 list
 and what each check should print is in
 [docs/verification-checklist.md](docs/verification-checklist.md).
 
@@ -151,8 +153,9 @@ Each control and the evidence that it works: [docs/risk-controls.md](docs/risk-c
 
 - [x] Source code for `frontend/` and `backend/`
 - [x] README with the deployed HTTPS URL *(placeholder until you deploy)*
-- [ ] Screenshot of a successful authenticated API call → `docs/screenshots/`
-- [ ] Screenshot or command output showing the valid certificate → `docs/screenshots/`
+- [ ] Screenshot of a successful authenticated API call → `docs/screenshots/` *(needs the Auth0 tenant and the deployed host)*
+- [ ] Screenshot or command output showing the valid certificate → `docs/screenshots/` *(needs the deployed host)*
+- [x] Local evidence captured in the meantime → [docs/screenshots/local/](docs/screenshots/local/)
 
 See [docs/screenshots/README.md](docs/screenshots/README.md) for exactly what to capture.
 
